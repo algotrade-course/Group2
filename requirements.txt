@@ -1,0 +1,8 @@
+matplotlib==3.8.3
+mplfinance==0.12.10b0
+numpy==1.26.4
+optuna==4.2.1
+pandas==2.2.3
+pip==25.0.1
+psycopg==3.2.5
+seaborn==0.13.2

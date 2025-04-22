@@ -1,0 +1,27 @@
+{
+    "parameters": {},
+    "test_period": {
+        "start_date": "2024-01-01",
+        "end_date": "2024-06-01"
+    },
+    "metrics": {
+        "Win Rate": 0.2727272727272727,
+        "Profit Factor": 0.6828702973519506,
+        "Sharpe Ratio": -2.2302687916636517,
+        "Maximum Drawdown": -0.08351416123806128,
+        "Average Trade Return": -108.17392467532873,
+        "Total Return": -0.05949565857143083,
+        "Total Trades": 55.0,
+        "Average Win": 854.0736428571379,
+        "Average Loss": -469.01676250000367,
+        "Expectancy": -108.17392467532869
+    },
+    "summary": {
+        "initial_balance": 100000,
+        "final_balance": 94050.43414285692,
+        "total_trades": 55,
+        "buy_signals": 21,
+        "sell_signals": 41,
+        "timestamp": "2025-04-22 21:36:27"
+    }
+}

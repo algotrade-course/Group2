@@ -1,0 +1,103 @@
+{
+    "strategy": {
+        "name": "Mean Reversion Strategy",
+        "description": "Mean Reversion strategy using Bollinger Bands and RSI for VN30 Futures"
+    },
+    "parameters": {
+        "bb_window": 23,
+        "bb_std": 1.1,
+        "rsi_period": 11,
+        "rsi_lower": 37,
+        "rsi_upper": 64,
+        "atr_period": 19,
+        "take_profit_mult": 5.6000000000000005,
+        "stop_loss_mult": 1.2000000000000002,
+        "trailing_trigger": 1.5,
+        "trailing_atr": 0.5,
+        "default_timeframe": "5min",
+        "trading_start": "09:15",
+        "trading_end": "14:30",
+        "market_close_time": "14:45"
+    },
+    "risk_management": {
+        "max_positions_per_day": 3,
+        "max_daily_loss": 2.0,
+        "max_drawdown": 0.05,
+        "risk_per_trade": 0.005
+    },
+    "optimization": {
+        "timeframes": [
+            "5min",
+            "15min",
+            "30min",
+            "1h",
+            "4h",
+            "1d"
+        ],
+        "parameter_ranges": {
+            "bb_window": {
+                "min": 10,
+                "max": 50,
+                "step": 1
+            },
+            "bb_std": {
+                "min": 1.0,
+                "max": 3.0,
+                "step": 0.1
+            },
+            "rsi_period": {
+                "min": 5,
+                "max": 30,
+                "step": 1
+            },
+            "rsi_lower": {
+                "min": 20,
+                "max": 40,
+                "step": 1
+            },
+            "rsi_upper": {
+                "min": 60,
+                "max": 80,
+                "step": 1
+            },
+            "atr_period": {
+                "min": 5,
+                "max": 30,
+                "step": 1
+            },
+            "take_profit_mult": {
+                "min": 2.0,
+                "max": 6.0,
+                "step": 0.2
+            },
+            "stop_loss_mult": {
+                "min": 0.5,
+                "max": 2.0,
+                "step": 0.1
+            }
+        },
+        "objective": "sharpe_ratio"
+    },
+    "backtest": {
+        "initial_capital": 100000,
+        "commission": 0.001,
+        "slippage": 0.0005,
+        "risk_free_rate": 0.03
+    },
+    "save_dir": "runs/mean_reversion",
+    "optimization_results": {
+        "date": "2025-04-22 21:40",
+        "train_period": "2024-01-01 to 2024-06-01",
+        "test_period": "2024-06-01 to 2025-01-01",
+        "trials": 100,
+        "best_score": 1.5008
+    },
+    "performance": {
+        "Win Rate": 0.3920704845814978,
+        "Profit Factor": 1.1999277238158084,
+        "Sharpe Ratio": -1.321823358615844,
+        "Maximum Drawdown": -0.068982448564242,
+        "Total Return": 0.15262442526316053,
+        "Total Trades": 227.0
+    }
+}

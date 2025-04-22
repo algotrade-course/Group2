@@ -1,0 +1,26 @@
+{
+    "parameters": {
+        "bb_window": 23,
+        "bb_std": 1.1,
+        "rsi_period": 11,
+        "rsi_lower": 37,
+        "rsi_upper": 64,
+        "atr_period": 19,
+        "take_profit_mult": 5.6000000000000005,
+        "stop_loss_mult": 1.2000000000000002
+    },
+    "optimization_info": {
+        "date": "2025-04-22 21:40",
+        "train_period": "2024-01-01 to 2024-06-01",
+        "test_period": "2024-06-01 to 2025-01-01",
+        "best_score": 1.5008
+    },
+    "performance": {
+        "Win Rate": 0.3920704845814978,
+        "Profit Factor": 1.1999277238158084,
+        "Sharpe Ratio": -1.321823358615844,
+        "Maximum Drawdown": -0.068982448564242,
+        "Total Return": 0.15262442526316053,
+        "Total Trades": 227.0
+    }
+}

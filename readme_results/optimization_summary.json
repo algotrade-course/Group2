@@ -1,0 +1,24 @@
+{
+    "optimization_summary": {
+        "total_trials": 91,
+        "best_score": 1.5008,
+        "best_trial_number": 97
+    },
+    "best_parameters": {
+        "timeframe": "5min",
+        "bb_window": 23,
+        "bb_std": 1.1,
+        "rsi_period": 11,
+        "rsi_lower": 37,
+        "rsi_upper": 64,
+        "atr_period": 19,
+        "take_profit_mult": 5.6000000000000005,
+        "stop_loss_mult": 1.2000000000000002
+    },
+    "best_performance": {
+        "total_trades": 160,
+        "win_rate": 0.4,
+        "sharpe_ratio": -1.16,
+        "max_drawdown": 0.07
+    }
+}
