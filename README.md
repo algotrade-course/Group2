@@ -103,7 +103,7 @@ pip install -r requirements.txt
 ```
 
 4. Configure database connection:
-Create `config/database.json` with your PostgreSQL credentials
+Create `config/database.json` with your Algotrade PostgreSQL credentials
 
 ### Running the Strategy
 #### Default Backtest
@@ -307,17 +307,14 @@ Period: 2024-06-01 to 2025-01-01
 
 
 ## Conclusion
-The mean reversion strategy shows promising but mixed performance, especially when applied to VN30 Index Futures:
 
-1. **Hypothesis Validation**: The strategy successfully identifies short-term price reversals, but consistent profitability is limited without optimization.
-2. **Risk Management**: Using ATR to size positions helps manage risk by adjusting to market volatility.
-3. **Optimization Challenges**: While optimization improves in-sample results, it does not always translate to strong out-of-sample performance.
-4. **Market Conditions**: Results vary across different market phases, highlighting the need to adapt the strategy based on volatility and trend behavior.
+Since the initial hypothesis, the team has successfully developed and implemented a comprehensive trading system that incorporates backtesting, optimization, and visualization components. The strategy, based on mean reversion principles using Bollinger Bands, RSI, and ATR, has been effectively applied to the VN30 Index Futures market, yielding results that align with the original hypothesis of price reverting to the mean after significant deviations.
 
-Future improvements could include:
-- Adding filters to detect different market conditions (e.g., trending vs. ranging)
-- Using trading volume to confirm entry signals
-- Dynamically adjusting strategy parameters over time
-- Testing the strategy on different timeframes or instruments for diversification
+The optimization process has proven valuable, enhancing performance by fine-tuning parameters. However, it is clear that optimization doesn't always lead to the best set of parameters. At times, it can generate false signals, particularly when market conditions change or when applied to different timeframes. The results show that timeframes play a crucial role in the strategy's performance, with shorter timeframes providing more frequent signals but also more noise, while longer timeframes offer fewer trades but higher win rates.
+
+While the system has been implemented successfully, it can still be considered somewhat naive in its approach. There is room for improvement, particularly in refining the optimization process to avoid overfitting and reducing the risk of false signals. Additionally, further work is needed to make the strategy more adaptive to varying market conditions.
+
+In conclusion, while the strategy is viable and demonstrates potential, future improvements could focus on refining the optimization process, incorporating market condition filters, and exploring different timeframes for better performance consistency.
+
 
 ---
