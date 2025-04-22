@@ -86,8 +86,8 @@ The `DataProcessor` class handles the transformation of raw tick data into analy
 ### Environment Setup
 1. Clone the repository:
 ```bash
-git clone https://github.com/algotrade-research/group2.git
-cd mean-reversion-strategy
+git clone https://github.com/algotrade-course/Group2.git
+cd group2
 ```
 
 2. Create and activate virtual environment:

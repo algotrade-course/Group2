@@ -4,5 +4,5 @@ numpy==1.26.4
 optuna==4.2.1
 pandas==2.2.3
 pip==25.0.1
-psycopg==3.2.5
+psycopg[binary]>=3.1.8
 seaborn==0.13.2
