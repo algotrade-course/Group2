@@ -271,15 +271,15 @@ Best parameters found:
 *Parameter impact on optimization score (correlation coefficients)*
 
 Parameter importance interpretation:
-- `take_profit_mult` (+0.44): Strong positive correlation – higher take profit multiplier improves optimization score
-- `timeframe_num` (+0.42): Strong positive correlation – higher timeframe values lead to better performance
-- `bb_std` (-0.50): Strong negative correlation – lower BB standard deviation improves scores
-- `bb_window` (-0.37): Moderate negative correlation – smaller BB window performs better
-- `rsi_upper` (-0.33): Moderate negative correlation – lower RSI upper threshold is more effective
-- `stop_loss_mult` (-0.17): Slight negative correlation – smaller stop loss multiplier yields better results
-- `rsi_lower` (+0.26): Mild positive correlation – higher RSI lower threshold tends to help
-- `atr_period` (+0.10): Minimal positive impact – slight improvement with higher ATR period
-- `rsi_period` (-0.03): Negligible negative impact – very little influence on overall performance
+- `take_profit_mult` (+0.44): Strong positive correlation
+- `timeframe_num` (+0.42): Strong positive correlation
+- `bb_std` (-0.50): Strong negative correlation
+- `bb_window` (-0.37): Moderate negative correlation
+- `rsi_upper` (-0.33): Moderate negative correlation
+- `stop_loss_mult` (-0.17): Slight negative correlation
+- `rsi_lower` (+0.26): Mild positive correlation
+- `atr_period` (+0.10): Minimal positive impact 
+- `rsi_period` (-0.03): Negligible negative impact
 
 Stronger coefficients (closer to ±1) indicate more influential parameters.
 
