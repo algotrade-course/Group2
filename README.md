@@ -236,7 +236,7 @@ This scoring function balances risk-adjusted returns (Sharpe ratio), risk contro
 Using Optuna for optimization
 - Number of trials: 100
 - Objective: Maximize Predefined score
-- Timeframes tested: 5min, 15min, 30min, 1h, 4h
+- Timeframes tested: 5min, 15min, 30min, 1h
 - Parameter ranges:
   - BB window: 10-50
   - BB std: 1.0-3.0
