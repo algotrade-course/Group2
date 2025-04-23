@@ -19,17 +19,46 @@ The system is built with a modular architecture that separates concerns into dis
 This separation allows for methodical strategy development and rigorous performance testing across different market conditions, enabling both academic analysis and practical trading applications.
 
 ## Trading Hypotheses
-The trading strategy tests several specific hypotheses about price behavior in the VN30 Index Futures market:
 
-1. **Mean Reversion Hypothesis**: When VN30F1M prices deviate significantly from their 20-period moving average (as measured by Bollinger Bands with 1.8 standard deviations), they tend to revert back toward the mean.
 
-2. **Momentum Confirmation Hypothesis**: The 13-period Relative Strength Index (RSI) can effectively identify oversold conditions (RSI < 30) and overbought conditions (RSI > 70) that precede price reversals in the VN30F1M market.
+The strategy aims to capture short-term price reversals using indicators like Bollinger Bands and RSI, with ATR-based dynamic risk management. It is built on the observation that VN30F1M prices tend to revert to the mean after reaching extreme levels.
 
-3. **Band Crossover Signal Hypothesis**: The crossing of price back inside the Bollinger Bands after being outside provides a statistically significant entry signal for mean reversion trades.
+## Target Market  
+- **Ticker**: VN30F1M  
+- **Strategy Type**: Mean Reversion  
 
-4. **Volatility-Adjusted Risk Management Hypothesis**: Using the 14-period Average True Range (ATR) for position sizing and setting take-profit (4×ATR) and stop-loss (1×ATR) levels improves risk-adjusted returns by accounting for current market volatility.
+## Entry Conditions  
 
-5. **Combined Signal Strength Hypothesis**: The combination of Bollinger Band crossovers and RSI extremes provides stronger and more reliable trading signals than either indicator alone.
+### Buy Signal (Bullish Hypothesis)  
+- Price was below the lower Bollinger Band (BB20, 1.8) and has crossed back above it  
+- RSI(13) is below 30 (oversold)
+
+### Sell Signal (Bearish Hypothesis)  
+- Price was above the upper Bollinger Band and has crossed back below it  
+- RSI(13) is above 70 (overbought)
+
+## Indicators Used  
+- **SMA(20)**: 20-period Simple Moving Average  
+- **BB20 (1.8 STD)**: Bollinger Bands with 1.8 standard deviations  
+- **RSI(13)**: 13-period Relative Strength Index  
+- **ATR(14)**: 14-period Average True Range for volatility-based exits
+
+## Order Execution  
+- **Entry**: Market order upon signal confirmation  
+- **Position Size**: 1 contract per trade  
+
+## Exit Conditions  
+
+### Take-Profit  
+- Exit when unrealized profit reaches +4 × ATR(14)  
+
+### Stop-Loss  
+- Exit when unrealized loss reaches -1 × ATR(14)  
+
+---
+
+This systematic approach aims for consistent trade execution with clear entry/exit logic, leveraging volatility-based rules to adapt to changing market conditions.
+
 
 ## Data
 ### Data Collection
@@ -133,7 +162,9 @@ Strategy parameters are configured in `config/strategy_config.json`:
         "rsi_upper": 70,
         "atr_period": 14,
         "take_profit_mult": 4.0,
-        "stop_loss_mult": 1.0
+        "stop_loss_mult": 1.0,
+        "commission":0.001,
+        "risk_free_rate": 0.03
     }
 }
 ```
