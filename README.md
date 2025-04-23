@@ -207,7 +207,7 @@ The optimization process uses Optuna to maximize a custom scoring function imple
 
 1. **Primary Score Calculation**:
    ```python
-   score = sharpe_ratio - (0.1 * max_drawdown) + (total_trades / 1000)
+   score = sharpe_ratio - |0.1 * max_drawdown| + (total_trades / 1000)
    ```
    
    This combines:
