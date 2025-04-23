@@ -10,21 +10,28 @@ import argparse
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-os.makedirs('../results', exist_ok=True)
-os.makedirs('../data_cache', exist_ok=True)
-os.makedirs('../logs', exist_ok=True)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+RESULTS_DIR = os.path.join(PROJECT_ROOT, 'results')
+DATA_CACHE_DIR = os.path.join(PROJECT_ROOT, 'data_cache')
+LOGS_DIR = os.path.join(PROJECT_ROOT, 'logs')
+CONFIG_DIR = os.path.join(PROJECT_ROOT, 'config')
+
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(DATA_CACHE_DIR, exist_ok=True)
+os.makedirs(LOGS_DIR, exist_ok=True)
+os.makedirs(CONFIG_DIR, exist_ok=True)
 
 sns.set_style("darkgrid")
 plt.rcParams['figure.figsize'] = (14, 8)
 
-from data.data_loader import DataLoader
-from optimization.config_loader import ConfigLoader
-from optimization.strategy_optimizer import StrategyOptimizer
-from optimization.optimization_analyzer import OptimizationAnalyzer
-from visualization.optimization import plot_optimization_progress, plot_parameter_importance, plot_timeframe_analysis
-from visualization.comparison import plot_parameter_comparison, plot_equity_curves_comparison
-from pipeline import TradingPipeline
-from backtest.performance import PerformanceMetrics
+from src.data.data_loader import DataLoader
+from src.optimization.config_loader import ConfigLoader
+from src.optimization.strategy_optimizer import StrategyOptimizer
+from src.optimization.optimization_analyzer import OptimizationAnalyzer
+from src.visualization.optimization import plot_optimization_progress, plot_parameter_importance, plot_timeframe_analysis
+from src.visualization.comparison import plot_parameter_comparison, plot_equity_curves_comparison
+from src.pipeline import TradingPipeline
+from src.backtest.performance import PerformanceMetrics
 
 def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30', 
                     test_start_date='2023-07-01', test_end_date='2023-07-31', 
@@ -41,7 +48,7 @@ def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30',
     print(f"Validation period: {test_start_date} to {test_end_date}")
     print(f"Number of optimization trials: {n_trials}")
     
-    loader = DataLoader(cache_dir="../data_cache")
+    loader = DataLoader(cache_dir=DATA_CACHE_DIR)
     
     print("Loading training data...")
     train_data = loader.get_active_contract_data(train_start_date, train_end_date)
@@ -67,18 +74,18 @@ def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30',
     print("\nOptimization complete!")
     print(f"Best parameters: {best_params}")
     
-    analyzer = OptimizationAnalyzer(log_file="logs/optimization_results.log")
+    analyzer = OptimizationAnalyzer(log_file=os.path.join(LOGS_DIR, "optimization_results.log"))
     opt_df = analyzer.trials_df
     print(f"Found {len(opt_df)} optimization trials")
     
     if save_plots:
-        fig_progress = analyzer.plot_optimization_progress(save_path='../results/optimization_progress.png')
+        fig_progress = analyzer.plot_optimization_progress(save_path=os.path.join(RESULTS_DIR, 'optimization_progress.png'))
         plt.close(fig_progress)
         
-        fig_importance = analyzer.plot_parameter_importance(save_path='../results/parameter_importance.png')
+        fig_importance = analyzer.plot_parameter_importance(save_path=os.path.join(RESULTS_DIR, 'parameter_importance.png'))
         plt.close(fig_importance)
         
-        fig_timeframe, timeframe_analysis = analyzer.plot_timeframe_analysis(save_dir='../results')
+        fig_timeframe, timeframe_analysis = analyzer.plot_timeframe_analysis(save_dir=RESULTS_DIR)
         plt.close(fig_timeframe)
         
         print("Performance by Timeframe:")
@@ -87,9 +94,9 @@ def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30',
     top_params = analyzer.get_top_parameters(n=5)
     print("Top 5 parameter combinations:")
     print(top_params)
-    top_params.to_csv('../results/top_parameters.csv', index=False)
+    top_params.to_csv(os.path.join(RESULTS_DIR, 'top_parameters.csv'), index=False)
     
-    summary = analyzer.generate_summary_report(save_dir='../results')
+    summary = analyzer.generate_summary_report(save_dir=RESULTS_DIR)
     best_params = summary['best_parameters']
     
     print("Best parameters from optimization:")
@@ -129,19 +136,19 @@ def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30',
         fig_comparison, comparison_df = plot_parameter_comparison(
             default_metrics, 
             metrics, 
-            save_path='../results/metrics_comparison.png'
+            save_path=os.path.join(RESULTS_DIR, 'metrics_comparison.png')
         )
         plt.close(fig_comparison)
         
         print("Comparison of Default vs Optimized Parameters:")
         print(comparison_df)
-        comparison_df.to_csv('../results/parameter_comparison.csv')
+        comparison_df.to_csv(os.path.join(RESULTS_DIR, 'parameter_comparison.csv'))
         
         if 'portfolio_history' in default_results and 'portfolio_history' in validation_results:
             fig_curves = plot_equity_curves_comparison(
                 default_results['portfolio_history'],
                 validation_results['portfolio_history'],
-                save_path='../results/default_vs_optimized.png'
+                save_path=os.path.join(RESULTS_DIR, 'default_vs_optimized.png')
             )
             plt.close(fig_curves)
     else:
@@ -180,8 +187,7 @@ def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30',
             if metric in ['Win Rate', 'Profit Factor', 'Sharpe Ratio', 'Maximum Drawdown', 'Total Return', 'Total Trades']
         }
     
-    output_path = '../config/optimized_parameters.json'
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_path = os.path.join(CONFIG_DIR, 'optimized_parameters.json')
     with open(output_path, 'w') as f:
         json.dump(optimized_config, f, indent=4)
     
@@ -198,10 +204,10 @@ def run_optimization(train_start_date='2023-01-01', train_end_date='2023-01-30',
         'performance': optimized_config.get('performance', {})
     }
     
-    with open('../results/optimized_parameters.json', 'w') as f:
+    with open(os.path.join(RESULTS_DIR, 'optimized_parameters.json'), 'w') as f:
         json.dump(optimized_params, f, indent=4)
         
-    print('Optimized parameters also saved to results/optimized_parameters.json')
+    print(f'Optimized parameters also saved to {os.path.join(RESULTS_DIR, "optimized_parameters.json")}')
     
     return best_params, metrics
 
