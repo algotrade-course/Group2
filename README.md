@@ -25,6 +25,7 @@ The strategy aims to capture short-term price reversals using indicators like Bo
 
 ## Target Market  
 - **Ticker**: VN30F1M  
+- **Timeframe**: 15-minute  
 - **Strategy Type**: Mean Reversion  
 
 ## Entry Conditions  
