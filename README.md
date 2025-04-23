@@ -200,6 +200,13 @@ Period: 2024-01-01 to 2024-06-01
 ![Backtest Chart](readme_results/backtest_chart.png)
 *Detailed price chart with entry/exit signals and equity curve*
 
+### Trade Analysis
+![Trade Distribution](readme_results/trade_distribution.png)
+*Profit/loss distribution of individual trades*
+
+![Exit Reasons](readme_results/exit_analysis.png)
+*Breakdown of trade exits by reason (take-profit, stop-loss, time-exit, Time-exit)*
+
 ## Optimization
 
 ### Optimization Objective Function
@@ -313,12 +320,7 @@ Period: 2024-06-01 to 2025-01-01
 ![Out-of-sample Performance](readme_results/validation_equity_curve.png)
 *Optimized parameters performance on validation data*
 
-### Trade Analysis
-![Trade Distribution](readme_results/trade_distribution.png)
-*Profit/loss distribution of individual trades*
 
-![Exit Reasons](readme_results/exit_analysis.png)
-*Breakdown of trade exits by reason (take-profit, stop-loss, time-exit, market-close)*
 
 ### Comparison with Default Parameters
 | Metric            | Default     | Optimized   | Improvement | Improvement %   |
