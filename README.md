@@ -283,18 +283,15 @@ Parameter importance interpretation:
 
 Stronger coefficients (closer to ±1) indicate more influential parameters.
 
+## Timeframe Performance Summary
 
-![Timeframe Analysis](readme_results/timeframe_comparison.png)
-*Performance comparison across different timeframes*
-Max Score by Timeframe: The 5-minute timeframe shows the best performance with a max score around 1.5, closely followed by the 15-minute. In contrast, the 4-hour timeframe performs the worst, with a max score below -1.0. This highlights the strength of shorter timeframes for this strategy.
+| Timeframe | Total Trades | Win Rate | Sharpe Ratio | Max Drawdown | Score (Mean) | Score (Max) |
+|-----------|--------------|----------|---------------|----------------|---------------|--------------|
+| 15min     | 63.90        | 0.434    | -1.264        | 0.0398         | 0.5272        | 1.3842       |
+| 1h        | 13.13        | 0.331    | -8.255        | 0.0200         | -0.5675       | -0.0077      |
+| 30min     | 24.29        | 0.493    | -4.274        | 0.0300         | -0.1174       | 0.3505       |
+| 5min      | 97.92        | 0.413    | -2.854        | 0.0642         | 0.0521        | 1.5008       |
 
-Average Sharpe Ratio by Timeframe: Sharpe ratios are negative across all timeframes. The 4-hour timeframe has the most extreme value at approximately -135, while the 1-hour and 5-minute timeframes are relatively less negative, hovering closer to 0.
-
-Average Win Rate by Timeframe: The 4-hour timeframe has the highest average win rate, exceeding 80%, with the 30-minute timeframe coming next at around 49%. Despite the high win rate, the 4-hour timeframe's poor returns suggest other performance issues.
-
-Average Number of Trades: A clear inverse relationship exists between timeframe and trade frequency. The 5-minute timeframe averages nearly 100 trades, providing more opportunities, while the 4-hour timeframe averages just 1–2 trades, indicating limited activity.
-
-Performance Paradox: Although the 4-hour timeframe boasts the highest win rate, it also has the worst overall performance. This suggests a scenario where fewer but larger losses outweigh frequent small wins, or where low trade frequency hinders long-term profitability.
 
 ## Out-of-sample Backtesting
 ### Parameters
