@@ -7,8 +7,12 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 class CacheManager:
-    def __init__(self, cache_dir="data_cache"):
-        self.cache_dir = cache_dir
+    def __init__(self, cache_dir=None):
+        if cache_dir is None:
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+            self.cache_dir = os.path.join(project_root, 'data_cache')
+        else:
+            self.cache_dir = cache_dir
         os.makedirs(self.cache_dir, exist_ok=True)
         
     def get_cache_path(self, data_type, identifier, suffix=None):

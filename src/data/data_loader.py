@@ -27,9 +27,13 @@ class DataLoader:
         self.config_path = config_path
         self.db_config = self._load_config()
         
-        self.cache_dir = cache_dir
+        if cache_dir is None:
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+            self.cache_dir = os.path.join(project_root, 'data_cache')
+        else:
+            self.cache_dir = cache_dir
         os.makedirs(self.cache_dir, exist_ok=True)
-        
+
         self.tick_cache_dir = os.path.join(self.cache_dir, "tick_data")
         self.contract_cache_dir = os.path.join(self.cache_dir, "contract_data")
         self.ohlcv_cache_dir = os.path.join(self.cache_dir, "ohlcv_data")

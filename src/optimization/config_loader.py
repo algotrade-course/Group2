@@ -6,7 +6,10 @@ from datetime import datetime, time
 class ConfigLoader:
     def __init__(self, config_path=None):
         if config_path is None:
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
             possible_paths = [
+                os.path.join(project_root, 'config/strategy_config.json'),
+                os.path.join(os.path.dirname(project_root), 'config/strategy_config.json'),
                 'config/strategy_config.json',
                 '../config/strategy_config.json',
                 '../../config/strategy_config.json',

@@ -8,14 +8,18 @@ from src.utils.caching import CacheManager
 logger = logging.getLogger(__name__)
 
 class DataProcessor:
-    def __init__(self, trading_start=time(9, 0), trading_end=time(15, 0), cache_dir="data_cache/ohlcv"):
+    def __init__(self, trading_start=time(9, 0), trading_end=time(15, 0), cache_dir=None):
         self.trading_start = trading_start
         self.trading_end = trading_end
         
-        self.cache_dir = cache_dir
+        if cache_dir is None:
+            # Use project root-based path by default
+            project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+            self.cache_dir = os.path.join(project_root, 'data_cache', 'ohlcv')
+        else:
+            self.cache_dir = cache_dir
         os.makedirs(self.cache_dir, exist_ok=True)
         
-        # Initialize the cache manager
         self.cache_manager = CacheManager(self.cache_dir)
     
     def resample_to_ohlcv(self, df, timeframe='15min'):

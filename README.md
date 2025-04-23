@@ -133,10 +133,19 @@ pip install -r requirements.txt
 ```
 
 4. Configure database connection:
-Create `config/database.json` with your Algotrade PostgreSQL credentials
-
+Create `config/database.json` with your Algotrade PostgreSQL credentials. You can find this information in ps2-financial-data of the course in the database.json file.
+The format should be something like this:
+```json
+{
+  "host": "example.vn",
+  "port": 8080,
+  "database": "database",
+  "user": "username",
+  "password": "password"
+}
+```
 ### Running the Strategy
-#### Default Backtest
+#### Running In-Sample Backtest
 ```bash
 python src/run_backtest.py
 ```
@@ -146,10 +155,48 @@ python src/run_backtest.py
 python src/run_optimization.py
 ```
 
+#### Running Out-of-Sample Backtests
+
+##### 1. Using Reference Parameters (Default)
+```bash
+python src/run_backtest_outsample.py
+```
+**Note:** This will produce identical results to those shown in the README. For reproducible purpose, running this script is enough but you are open to try different scripts and parameters
+
+##### 2. Using Custom Optimized Parameters
+```bash
+python src/run_backtest_outsample.py --custom
+```
+
+##### 3. With Custom Date Range
+```bash
+python src/run_backtest_outsample.py --start 2024-06-01 --end 2025-01-01
+```
+
+The reference optimized parameters are:
+```json
+{
+    "bb_window": 23,
+    "bb_std": 1.1,
+    "rsi_period": 11,
+    "rsi_lower": 37,
+    "rsi_upper": 64,
+    "atr_period": 19,
+    "take_profit_mult": 5.6,
+    "stop_loss_mult": 1.2,
+    "default_timeframe": "5min"
+}
+```
 #### Notebooks
 For interactive analysis:
 - `notebooks/updated_backtest.ipynb` - Step-by-step backtest walkthrough
 - `notebooks/updated_optimization.ipynb` - Optimization process visualization
+- `notebooks/run_backtest_outsample.ipynb` - Outsample backtesting and the notebook includes an option to toggle between reference and custom parameters: 
+
+```python
+# Choose whether to use reference parameters (True) or custom optimized parameters (False)
+use_reference_parameters = True
+```
 
 ### Configuration
 Strategy parameters are configured in `config/strategy_config.json`:
@@ -169,7 +216,19 @@ Strategy parameters are configured in `config/strategy_config.json`:
     }
 }
 ```
-
+## Reproducibility Note:
+All the illustration and metrics shown here should be found in the `results` folder along with additional illustration. Please note that the result from the optimization will vary. To produce the same results as this README, please run the run_backtest.py / updated_backtest.ipynb as it is and run the run_backtest_outsample.py / run_backtest_outsample.ipynb with the reference parameters. or in short:
+For python:
+```bash
+python src/run_backtest.py
+```
+and 
+```bash
+python src/run_backtest_outsample.py
+```
+For notebook:
+- `notebooks/updated_backtest.ipynb`
+- `notebooks/run_backtest_outsample.ipynb`
 ## In-sample Backtesting
 ### Parameters
 Using default configuration:

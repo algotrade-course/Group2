@@ -1,0 +1,24 @@
+{
+    "parameters": {
+        "bb_window": 23,
+        "bb_std": 1.1,
+        "rsi_period": 11,
+        "rsi_lower": 37,
+        "rsi_upper": 64,
+        "atr_period": 19,
+        "take_profit_mult": 5.6000000000000005,
+        "stop_loss_mult": 1.2000000000000002,
+        "trailing_trigger": 1.5,
+        "trailing_atr": 0.5,
+        "default_timeframe": "5min",
+        "trading_start": "09:15",
+        "trading_end": "14:30",
+        "market_close_time": "14:45"
+    },
+    "risk_management": {
+        "max_positions_per_day": 3,
+        "max_daily_loss": 2.0,
+        "max_drawdown": 0.05,
+        "risk_per_trade": 0.005
+    }
+}
