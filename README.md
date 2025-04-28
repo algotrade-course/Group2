@@ -1,4 +1,5 @@
 ![Static Badge](https://img.shields.io/badge/PLUTUS-70%25-darkgreen)
+![Static Badge](https://img.shields.io/badge/PLUTUS-Sample-darkblue)
 
 # Mean Reversion Strategy for VN30 Index Futures
 
