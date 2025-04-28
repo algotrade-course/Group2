@@ -1,7 +1,7 @@
 ![Static Badge](https://img.shields.io/badge/PLUTUS-70%25-darkgreen)
 ![Static Badge](https://img.shields.io/badge/PLUTUS-Sample-darkblue)
 
-# Mean Reversion Strategy for VN30 Index Futures
+# QuarterOscillate
 
 ## Abstract
 This project develops a comprehensive backtesting and optimization method for mean reversion trading strategies applied to the VN30 Index Futures market. The system combines technical indicators (Bollinger Bands with 1.8 standard deviations, 13-period RSI, and 14-period ATR) to identify overbought and oversold conditions that signal potential price reversals. Through modular architecture, the framework enables systematic testing of the hypothesis that prices revert to their short-term moving average after reaching extremes. Validation on historical market data demonstrates the system's effectiveness in capturing mean-reverting price movements while maintaining controlled risk parameters with 4×ATR take-profit and 1×ATR stop-loss levels.
